@@ -3,8 +3,9 @@
 Learning operator-level Linux from macOS, on a disposable colima VM, by growing
 one service and repeatedly being handed it broken.
 
-- **[`docs/roadmap.md`](docs/roadmap.md)** — the working contract, the
-  verification standard, and the steps.
+- **[`docs/roadmap.md`](docs/roadmap.md)** — the goal and the steps.
+- **[`CLAUDE.md`](CLAUDE.md)** — the repository-wide rules, and the two skills
+  under `.claude/skills` that run a step from start to close.
 - **[`docs/lab.md`](docs/lab.md)** — how `linuxlab` is built, and what has to
   be verified about it.
 - **`src/`** — the small HTTP daemon in C that the whole roadmap is hung on.

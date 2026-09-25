@@ -7,65 +7,21 @@ Read [`design.md`](https://github.com/hypatia-tile/plan-learn-linux-on-mac/blob/
 in `plan-learn-linux-on-mac` first. The steps implement it; the reasoning is
 there, not here. The lab itself is [`lab.md`](lab.md).
 
-## Working contract
+## How a step is run
 
-- **The owner writes everything that runs on the machine.** The C daemon, every
-  unit file, the nginx configuration, every shell script. Naming a file or a
-  setting is specification; writing its body is not.
-- **The AI writes `docs/roadmap.md`, the step issues and the reviews** — and
-  the colima procedure in `lab.md`. That last one is the single exception, and
-  it is deliberately narrow: **colima commands only**. It does not extend to
-  systemd, nginx, C, or anything inside the VM.
-- **The AI injects the faults.** It may do anything inside `linuxlab`,
-  including `sudo` and including destroying it. On the host it runs read-only
-  commands only, exactly as in every other repository.
-- **`linuxlab` is started with `--mount none`.** The host home directory is not
-  reachable from the VM. Colima's default is the opposite — `$HOME` mounted
-  writable — so this is not something to leave to chance.
-- **Everything is written in English** — this file, `README.md`, comments in
-  `.c` files, unit file comments, issue bodies, review comments and commit
-  messages.
-- **The AI may run `git commit` on the owner's behalf.** The code is still the
-  owner's; the commit message is where the *why* is recorded, so the AI prints
-  every message before committing.
-- **Commits go straight to `main` and are pushed.** Never amend a pushed
-  commit: a review is pinned to a commit hash, and amending orphans it. Fixes
-  to pushed work are stacked as new commits.
-- One issue per step. The issue is where the diagnosis is written down.
+This file holds the goal and the steps, and nothing about the procedure. Who
+writes what, how the faults are injected, how blind each phase is, when a hint
+is owed, and what makes a step done are all in the repository's own skills:
 
-## Verification standard
+- **`.claude/skills/step-start`** — filing the step, the spec, the artefact
+  review, verification on the machine, injection, the hint clock.
+- **`.claude/skills/step-review`** — grading the named cause, disclosure,
+  recording, closing.
 
-**A step is done when the cause has been named, not when the service runs.**
+A rule written in two places is a rule that will eventually disagree with
+itself, so it is written there and not here. The one line worth repeating:
 
-Every step from 3 onward ends with the machine broken by the AI. Restoring
-service is necessary and not sufficient: the owner writes, in the step's issue,
-what was wrong and why it produced the symptom that was observed. A fix that
-restored service without explaining it is a failed step, because the next
-identical failure will be just as opaque.
-
-The AI then states what it actually did. Where the explanation and the fault
-differ, the difference is the finding.
-
-### Blindness
-
-How much is disclosed rises with the steps:
-
-| Phase | Steps | Disclosed at injection time |
-|---|---|---|
-| 1 | 3–4 | The exact surface — "one line in the unit file was changed" |
-| 2 | 5–8 | The area only — "either the user or the permissions" |
-| 3 | 9–16 | Nothing |
-
-### Hints
-
-Clock-driven, not mood-driven:
-
-- **30 minutes stuck** — first hint: where to look. Nothing about what is there.
-- **60 minutes** — second hint: the area is narrowed.
-- **After that** — the answer, and the step continues from there.
-
-"Stuck" means no new information has been obtained, not that it is not solved
-yet. Reading a journal is progress.
+> **A step is done when the cause has been named, not when the service runs.**
 
 ## Steps
 

@@ -9,8 +9,9 @@ outside Nix's management — nothing here is reproduced by
 `darwin-rebuild switch`. If a procedure is not written down here, it is lost at
 the next `colima delete`. That is what Steps 7 and 15 test.
 
-Per the working contract, the colima commands in this file are the one thing
-the AI supplies. Everything *inside* the VM is the owner's.
+The colima commands in this file are the one thing the AI supplies — the single
+narrow exception in `.claude/skills/step-start`. Everything *inside* the VM is
+the owner's.
 
 ## What is already on the host
 
