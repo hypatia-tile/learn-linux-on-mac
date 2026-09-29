@@ -97,9 +97,8 @@ Consequences worth knowing before they surprise someone:
 
 ## What Step 0 settled
 
-Three of the five open questions this file carried were answered from the host,
-without entering the VM. The two that remain are the ones that matter, and they
-are answered from inside.
+Three of the five open questions were resolved from the host environment without
+entering the VM. The remaining two require entering the VM to be answered.
 
 **1. `--runtime none` is accepted.** The flag's own help enumerates
 `(containerd, docker, incus)` and the binary carries `unsupported container
